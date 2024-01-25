@@ -1,24 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Typography, AppBar, Button, Card, CardActions, CardContent, CardMedia, CssBaseline, Grid, Toolbar, Container } from '@mui/material';
+import { PhotoCamera } from '@mui/icons-material';
+
+
+// import './App.css';
+// import useStyles from './App_styles';
 
 function App() {
+
+  // const classes = useStyles();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Vishu Sharma
-        </a>
-      </header>
-    </div>
+    <>
+      <CssBaseline />
+      <AppBar position='relative' className='shadow-lg fixed rounded'>
+        <Toolbar>
+          <PhotoCamera />
+          <Typography variant='h6'>
+            WealthBlend
+          </Typography>
+        </Toolbar>
+      </AppBar>
+
+      <main>
+        <div className= "mt-2 bg-zinc-300">
+          <Container maxWidth="sm" >
+            <Typography variant='h2' align='center' color="textPrimary" gutterBottom>
+              WealthBlend
+            </Typography>
+            <Typography variant='h6' align='center' color="textSecondary" paragraph>
+              WealthBlend is One-Stop Solution for Managing Your Wealth, Budgeting Your Income, and Educating yourself on Investing your savings to get the best returns.
+            </Typography>
+
+            <div>
+              <Grid container spacing={2} justifyContent='center' >
+
+                <Grid item >
+                  <Button variant="contained" color="primary">
+                    Tips on Savings
+                  </Button>
+                </Grid>
+
+                <Grid item >
+                  <Button variant="outlined" color="primary">
+                    Sign Up
+                  </Button>
+                </Grid>
+
+              </Grid>
+            </div>
+
+          </Container>
+        </div>
+      </main>
+
+    </>
   );
 }
 
