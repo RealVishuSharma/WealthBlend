@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import {
   Box,
   Button,
@@ -68,6 +69,56 @@ const theme = createTheme({
 });
 
 const SignupPage = () => {
+
+  const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState();
+  const [confirmpwd, setConfirmpwd] = useState();
+
+  const UserChange = (e) => {
+    setUser(e.target.value);
+    console.log(user);
+  }
+
+  const EmailChange = (e) => {
+    setEmail(e.target.value);
+    console.log(email);
+  }
+
+  const PasswordChange = (e) => {
+    setPassword(e.target.value);
+    console.log(password);
+  }
+
+  const ConpwdChange = (e) => {
+    setConfirmpwd(e.target.value);
+    console.log(confirmpwd);
+  }
+
+  const toSave = {
+    name: user,
+    email: email,
+    password: password,
+    confirmpwd: confirmpwd,
+  }
+
+  const addUser =  () => {
+    fetch('http://localhost:9876/user/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(toSave),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('User Created!:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
   return (
     <ThemeProvider theme={theme}>
       <Box
@@ -104,6 +155,7 @@ const SignupPage = () => {
                       </InputAdornment>
                     ),
                   }}
+                  onChange={(e) => UserChange(e)}
                 />
                 <TextField
                   label="Email"
@@ -115,6 +167,7 @@ const SignupPage = () => {
                       </InputAdornment>
                     ),
                   }}
+                  onChange={(e) => EmailChange(e)}
                 />
                 <TextField
                   label="Password"
@@ -126,6 +179,7 @@ const SignupPage = () => {
                       </InputAdornment>
                     ),
                   }}
+                  onChange={(e) => PasswordChange(e)}
                 />
                 <TextField
                   label="Confirm Password"
@@ -137,6 +191,7 @@ const SignupPage = () => {
                       </InputAdornment>
                     ),
                   }}
+                  onChange={(e) => ConpwdChange(e)}
                 />
                 <Button
                   variant="contained"
@@ -148,6 +203,7 @@ const SignupPage = () => {
                       background: 'linear-gradient(135deg, #ff6584, #6c63ff)',
                     },
                   }}
+                  onClick={addUser}
                 >
                   Sign Up
                 </Button>

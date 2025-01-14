@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const connectDB = async() => {
-    mongoose.connect("mongodb://localhost://127.0.0.1:27017/CrudApplication").then(() => {
-        console.log("The Database is Connectedd!")
+    mongoose.connect("mongodb+srv://VishuSharma:7sXyIPKYR2ldF2Ba@cluster0.tsow0.mongodb.net/").then(() => {
+        console.log("The Database is Connected!")
     }).catch((err) => {
         console.log("Unable to connect to Database" + err)
     })

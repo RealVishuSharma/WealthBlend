@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 require("dotenv").config()
 
 // Internal Dependencies
@@ -12,16 +13,28 @@ const route = require("./src/routes/route");
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(express.static(path.join(__dirname, 'front-end/build')));
+app.use(bodyParser.urlencoded({
+    extended: true,
+}));
+app.use(bodyParser.json());
+// const corsOptions = { 
+//     origin: 'http://localhost:3000', 
+//     methods: 'GET,POST', 
+//     allowedHeaders: 'Content-Type,Authorization'
+//  };
+app.use(cors());
 
-app.get('/api/data', (req, res) => {
-    res.json({ message: 'Hello from the server!' });
-});
+app.use("/user", route);
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build/index.html'));
-});
+const start = async()=> {
+    try {
+        app.listen(port, () => {
+            console.log(`Server is running on port ${port}`)
+        });
+        await connectDB();
+    } catch (error) {
+        console.error(`Error connecting to server: ${error.message}`);
+    }
+}
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+start();
