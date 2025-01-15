@@ -93,6 +93,7 @@ function Home() {
         </Typography>
           <Grid container spacing={4}>
             <Grid item xs={12} md={4}>
+              <a href="/budget">
               <Card
                 sx={{
                   padding: 3,
@@ -110,8 +111,10 @@ function Home() {
                   Track your income and expenses with intuitive tools and visualizations.
                 </Typography>
               </Card>
+              </a>
             </Grid>
             <Grid item xs={12} md={4}>
+              <a href="/education">
               <Card
                 sx={{
                   padding: 3,
@@ -129,8 +132,10 @@ function Home() {
                   Learn investment strategies and financial management principles.
                 </Typography>
               </Card>
+              </a>
             </Grid>
             <Grid item xs={12} md={4}>
+              <a href="/wealth">
               <Card
                 sx={{
                   padding: 3,
@@ -151,6 +156,7 @@ function Home() {
                   Optimize your portfolio and plan for long-term financial growth.
                 </Typography>
               </Card>
+              </a>
             </Grid>
           </Grid>
         </Container>
