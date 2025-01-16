@@ -3,20 +3,10 @@ import {
     Typography,
     AppBar,
     Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardMedia,
-    CssBaseline,
-    Grid,
     Toolbar,
-    Container,
   } from '@mui/material';
   import {
-    PhotoCamera,
     AccountBalanceWallet,
-    Timeline,
-    School,
   } from '@mui/icons-material';
 
 const Header = () => {
@@ -38,8 +28,8 @@ const Header = () => {
           </div>
           <div style={{ display: 'flex', gap: '16px' }}>
             <Button color="inherit">
-              <a href="/login" style={{ textDecoration: 'none', color: '#fff' }}>
-                Login
+              <a href="/signup" style={{ textDecoration: 'none', color: '#fff' }}>
+                Sign up
               </a>
             </Button>
             <Button
@@ -50,7 +40,7 @@ const Header = () => {
                 '&:hover': { backgroundColor: '#f0f0f0' },
               }}
             >
-              <a href="/signup">Sign Up</a>
+              <a href="/Login">Login</a>
             </Button>
           </div>
         </Toolbar>

@@ -13,6 +13,7 @@ import {
 } from '@mui/material';
 import { Email, Lock, Person } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { motion } from 'framer-motion';
 
 const theme = createTheme({
   palette: {
@@ -69,40 +70,39 @@ const theme = createTheme({
 });
 
 const SignupPage = () => {
-
-  const [user, setUser] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState();
-  const [confirmpwd, setConfirmpwd] = useState();
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmpwd, setConfirmpwd] = useState('');
 
   const UserChange = (e) => {
     setUser(e.target.value);
     console.log(user);
-  }
+  };
 
   const EmailChange = (e) => {
     setEmail(e.target.value);
     console.log(email);
-  }
+  };
 
   const PasswordChange = (e) => {
     setPassword(e.target.value);
     console.log(password);
-  }
+  };
 
   const ConpwdChange = (e) => {
     setConfirmpwd(e.target.value);
     console.log(confirmpwd);
-  }
+  };
 
   const toSave = {
     name: user,
     email: email,
     password: password,
     confirmpwd: confirmpwd,
-  }
+  };
 
-  const addUser =  () => {
+  const addUser = () => {
     fetch('http://localhost:9876/user/signup', {
       method: 'POST',
       headers: {
@@ -117,7 +117,7 @@ const SignupPage = () => {
       .catch((error) => {
         console.error('Error:', error);
       });
-  }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -133,101 +133,118 @@ const SignupPage = () => {
         }}
       >
         <Container maxWidth="sm">
-          <Card>
-            <CardContent sx={{ padding: 5 }}>
-              <Box sx={{ textAlign: 'center', mb: 4 }}>
-                <Typography variant="h4" component="h1" gutterBottom>
-                  Join WealthBlend
-                </Typography>
-                <Typography variant="body1">
-                  Create your account and start mastering your finances.
-                </Typography>
-              </Box>
-
-              <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
-                <TextField
-                  label="Full Name"
-                  type="text"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Person color="primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  onChange={(e) => UserChange(e)}
-                />
-                <TextField
-                  label="Email"
-                  type="email"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Email color="primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  onChange={(e) => EmailChange(e)}
-                />
-                <TextField
-                  label="Password"
-                  type="password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Lock color="primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  onChange={(e) => PasswordChange(e)}
-                />
-                <TextField
-                  label="Confirm Password"
-                  type="password"
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <Lock color="primary" />
-                      </InputAdornment>
-                    ),
-                  }}
-                  onChange={(e) => ConpwdChange(e)}
-                />
-                <Button
-                  variant="contained"
-                  fullWidth
-                  sx={{
-                    background: 'linear-gradient(135deg, #6c63ff, #ff6584)',
-                    color: '#fff',
-                    '&:hover': {
-                      background: 'linear-gradient(135deg, #ff6584, #6c63ff)',
-                    },
-                  }}
-                  onClick={addUser}
-                >
-                  Sign Up
-                </Button>
-                <Box sx={{ textAlign: 'center', mt: 2 }}>
-                  <Typography variant="body2" sx={{ color: '#555' }}>
-                    Already have an account?{' '}
-                    <Link
-                      href="/login"
-                      underline="hover"
-                      sx={{
-                        fontWeight: 'bold',
-                        color: '#6c63ff',
-                        '&:hover': {
-                          textDecoration: 'underline',
-                        },
-                      }}
-                    >
-                      Log in
-                    </Link>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+          >
+            <Card>
+              <CardContent sx={{ padding: 5 }}>
+                <Box sx={{ textAlign: 'center', mb: 4 }}>
+                  <motion.div
+                    initial={{ y: -50, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    <Typography variant="h4" component="h1" gutterBottom>
+                      Join WealthBlend
+                    </Typography>
+                  </motion.div>
+                  <Typography variant="body1">
+                    Create your account and start mastering your finances.
                   </Typography>
                 </Box>
-              </Box>
-            </CardContent>
-          </Card>
+
+                <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                  <TextField
+                    label="Full Name"
+                    type="text"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Person color="primary" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={(e) => UserChange(e)}
+                  />
+                  <TextField
+                    label="Email"
+                    type="email"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Email color="primary" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={(e) => EmailChange(e)}
+                  />
+                  <TextField
+                    label="Password"
+                    type="password"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Lock color="primary" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={(e) => PasswordChange(e)}
+                  />
+                  <TextField
+                    label="Confirm Password"
+                    type="password"
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <Lock color="primary" />
+                        </InputAdornment>
+                      ),
+                    }}
+                    onChange={(e) => ConpwdChange(e)}
+                  />
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <Button
+                      variant="contained"
+                      fullWidth
+                      sx={{
+                        background: 'linear-gradient(135deg, #6c63ff, #ff6584)',
+                        color: '#fff',
+                        '&:hover': {
+                          background: 'linear-gradient(135deg, #ff6584, #6c63ff)',
+                        },
+                      }}
+                      onClick={addUser}
+                    >
+                      Sign Up
+                    </Button>
+                  </motion.div>
+                  <Box sx={{ textAlign: 'center', mt: 2 }}>
+                    <Typography variant="body2" sx={{ color: '#555' }}>
+                      Already have an account?{' '}
+                      <Link
+                        href="/login"
+                        underline="hover"
+                        sx={{
+                          fontWeight: 'bold',
+                          color: '#6c63ff',
+                          '&:hover': {
+                            textDecoration: 'underline',
+                          },
+                        }}
+                      >
+                        Log in
+                      </Link>
+                    </Typography>
+                  </Box>
+                </Box>
+              </CardContent>
+            </Card>
+          </motion.div>
         </Container>
       </Box>
     </ThemeProvider>
